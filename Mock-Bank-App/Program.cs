@@ -22,11 +22,10 @@ ColoredConsole.ChangeTypingColor(ConsoleColor.White); number.Username = Console.
 
 
 if (File.Exists($"{number.Username}BankCurrentAmount.txt")) { currentAmount = Convert.ToSingle(File.ReadAllText($"{number.Username}BankCurrentAmount.txt")); } else { currentAmount = startingAmount; }
-if (File.Exists($"{number.Username}BankPinCode.txt")) { number.ValidPinNumber = File.ReadAllText($"{number.Username}BankPinCode.txt"); }
 if (File.Exists($"{number.Username}TransactionHistory.csv")) { transactionHistory.LoadHistory(); }
+number.LoadPin();
 
 
-if (number.ValidPinNumber == "-1") { Console.Write("Account is locked"); System.Environment.Exit(0); }
 number.PinEntry();
 PickingMenuOptions();
 

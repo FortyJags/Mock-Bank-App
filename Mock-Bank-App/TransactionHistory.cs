@@ -10,7 +10,7 @@ namespace Mock_Bank_App
     internal class TransactionHistory
     {
         private List<string?> _transactions = new List<string?>();
-        private string[] _loadedHistory;
+        private string?[] _loadedHistory;
         private PinNumber _customerName;
         private int index = 0;
 

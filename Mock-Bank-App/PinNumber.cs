@@ -11,22 +11,22 @@ namespace Mock_Bank_App
     internal class PinNumber
     {
 
-        private string validPinNumber = "0000";
+        private string? validPinNumber;
         private string? userPinAttempt;
         private int pinAttempts = 0;
 
         private string? username;
 
-        public string Username { get; set; }
+        public string? Username { get; set; }
 
-        public string ValidPinNumber { get { return validPinNumber; } set { validPinNumber = value; } }
-
+        public string? ValidPinNumber { get { return validPinNumber; } set { validPinNumber = value; } }
+        
 
         //Asks user for a pin number, then calls the PinChecker method 
         public void PinEntry()
         {
-
-
+       
+        if (validPinNumber.Contains("locked")) { Console.Write("Account is locked"); System.Environment.Exit(0); }
             while (userPinAttempt != validPinNumber)
             {
                 Console.Clear();
@@ -42,7 +42,7 @@ namespace Mock_Bank_App
         //Checks 2 things. First it checks if the user has attempted to enter a pin number unsuccesfully 3 times, if true then it locks the account and calls LockOutAccount. It also checks to see if the users input equals the valid pin assigned to their account, if they enter the wrong pin it adds 1 to the pin attempts and calls PinEntry.
         public void PinChecker()
         {
-            if (pinAttempts == 3) { validPinNumber = "-1"; ColoredConsole.WriteLineColored("Your account has been locked, please type a message for the admin to review.", ConsoleColor.Red); LockOutAccount(); pinAttempts = 0; }
+            if (pinAttempts == 3) { validPinNumber = "locked"; ColoredConsole.WriteLineColored("Your account has been locked, please type a message for the admin to review.", ConsoleColor.Red); LockOutAccount(); pinAttempts = 0; }
             if (userPinAttempt != validPinNumber) { ColoredConsole.WriteLineColored("Incorrect PIN", ConsoleColor.Red); pinAttempts++; PinEntry(); }
         }
 
@@ -70,8 +70,6 @@ namespace Mock_Bank_App
         private void LockOutAccount()
         {
 
-
-
             string message = Console.ReadLine();
 
             List<TicketData> ticketData = new List<TicketData>() { new TicketData(Username, message) };
@@ -88,10 +86,14 @@ namespace Mock_Bank_App
             Environment.Exit(0);
         }
 
+        public void LoadPin() { 
+            if (File.Exists($"{username}BankPinCode.txt")) { validPinNumber = File.ReadAllText($"{validPinNumber}BankPinCode.txt"); }
+            else { validPinNumber = "0000"; }
+            }
 
 
 
-    }
+}
 
     public record TicketData(string username, string message);
 }
