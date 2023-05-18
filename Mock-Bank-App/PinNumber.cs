@@ -17,7 +17,7 @@ namespace Mock_Bank_App
 
         private string? username;
 
-        public string? Username { get; set; }
+        public string? Username { get { return username; } set { username = value; } }
 
         public string? ValidPinNumber { get { return validPinNumber; } set { validPinNumber = value; } }
         
@@ -78,16 +78,16 @@ namespace Mock_Bank_App
 
             foreach (TicketData data in ticketData)
             {
-                raiseTicket.Add($"{Username}, {message}");
+                raiseTicket.Add($"{username}, {message}");
             }
 
             File.WriteAllLines(@"D:\LearnToCode\Admin\Admin\bin\Debug\net6.0\Tickets.csv", raiseTicket);
-            File.WriteAllText($"{Username}BankPinCode.txt", validPinNumber);
+            File.WriteAllText($"{username}BankPinCode.txt", validPinNumber);
             Environment.Exit(0);
         }
 
         public void LoadPin() { 
-            if (File.Exists($"{Username}BankPinCode.txt")) { Console.WriteLine("Loaded pin"); validPinNumber = File.ReadAllText($"{Username}BankPinCode.txt"); }
+            if (File.Exists($"{username}BankPinCode.txt")) { Console.WriteLine("Loaded pin"); validPinNumber = File.ReadAllText($"{username}BankPinCode.txt"); }
             else { Console.WriteLine("Did not load pin"); validPinNumber = "0000"; }
             }
 
