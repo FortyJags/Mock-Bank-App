@@ -32,7 +32,7 @@ namespace Mock_Bank_App
 
 
         //When called, this takes the Date and Time at that moment, creates a string showing DateTime, transaction type and transactiona mounts. This string is then added to the _transactions list
-        public void AddToTransactionList(float amountAddedOrWithdrawn, float amountAfterTransaction, string transactionType)
+        public void AddToTransactionList(decimal amountAddedOrWithdrawn, decimal amountAfterTransaction, string transactionType)
         {
             DateTime timeOfTransaction = DateTime.Now;
             string transactionString = $"At {timeOfTransaction}:{transactionType} of £{amountAddedOrWithdrawn} totaling to £{amountAfterTransaction},";

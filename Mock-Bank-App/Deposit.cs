@@ -12,7 +12,7 @@ namespace Mock_Bank_App
 
     internal class Deposit
     {
-        private float depositAmount;
+        private decimal depositAmount;
         private string? depositText;
         private TransactionHistory _history;
 
@@ -23,18 +23,18 @@ namespace Mock_Bank_App
         }
 
         //Asks the user for an amount they want to deposit. This calls FloatTypeCheck to make sure their input is a number. If the number is valid, it adds to the current amount and also supplies data to the transaction log. If the number is not valid, it asks for a different number.
-        public float Transaction(float currentAmount)
+        public decimal Transaction(decimal currentAmount)
         {
             Console.WriteLine("Please enter the amount you wish to deposit.");
             while (depositText != "quit")
             {
                 depositText = Console.ReadLine();
-                if (FloatTypeCheck(depositText) == true)
+                if (DecimalTypeCheck(depositText) == true)
                 {
                     Console.WriteLine("Previous balance £" + currentAmount); currentAmount += depositAmount; Console.WriteLine("New balance: £" + currentAmount);
                     _history.AddToTransactionList(currentAmount, depositAmount, "deposit"); return currentAmount;
                 }
-                else if (FloatTypeCheck(depositText) == false) { ColoredConsole.WriteLineColored("Please enter a number or enter quit to return to menu", ConsoleColor.Blue); }
+                else if (DecimalTypeCheck(depositText) == false) { ColoredConsole.WriteLineColored("Please enter a number or enter quit to return to menu", ConsoleColor.Blue); }
 
             }
 
@@ -44,7 +44,7 @@ namespace Mock_Bank_App
         public void ReturnToMenu() => Console.Clear();
 
         //Checks a given string and returns true or false depending on if the string can be converted to a float
-        private bool FloatTypeCheck(string userInput) => float.TryParse(userInput, out depositAmount);
+        private bool DecimalTypeCheck(string userInput) => decimal.TryParse(userInput, out depositAmount);
 
 
 

@@ -10,8 +10,8 @@ Deposit deposit = new Deposit(transactionHistory);
 
 
 
-float startingAmount = 1000;
-float currentAmount;
+decimal startingAmount = 1000;
+decimal currentAmount;
 
 int userMenuChoice = 0;
 
@@ -21,7 +21,7 @@ ColoredConsole.WriteLineColored("Please enter your username", ConsoleColor.Blue)
 ColoredConsole.ChangeTypingColor(ConsoleColor.White); number.Username = Console.ReadLine();
 
 
-if (File.Exists($"{number.Username}BankCurrentAmount.txt")) { currentAmount = Convert.ToSingle(File.ReadAllText($"{number.Username}BankCurrentAmount.txt")); } else { currentAmount = startingAmount; }
+if (File.Exists($"{number.Username}BankCurrentAmount.txt")) { currentAmount = Convert.ToDecimal(File.ReadAllText($"{number.Username}BankCurrentAmount.txt")); } else { currentAmount = startingAmount; }
 if (File.Exists($"{number.Username}TransactionHistory.csv")) { transactionHistory.LoadHistory(); }
 number.LoadPin();
 
