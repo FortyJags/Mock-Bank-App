@@ -35,7 +35,7 @@ namespace Mock_Bank_App
         public void AddToTransactionList(decimal amountAddedOrWithdrawn, decimal amountAfterTransaction, string transactionType)
         {
             DateTime timeOfTransaction = DateTime.Now;
-            string transactionString = $"At {timeOfTransaction}:{transactionType} of £{amountAddedOrWithdrawn} totaling to £{amountAfterTransaction},";
+            string transactionString = $"At {timeOfTransaction}:{transactionType} of {amountAddedOrWithdrawn:C} totaling to {amountAfterTransaction:C},";
             _transactions.Add(transactionString);
 
         }

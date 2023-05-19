@@ -30,7 +30,7 @@ namespace Mock_Bank_App
                 currentAmount = CheckAmountAgainstBalance(currentAmount);
             }
             Console.Clear();
-            Console.WriteLine("£" + currentAmount);
+            Console.WriteLine($"{currentAmount:C}");
             return currentAmount;
 
         }

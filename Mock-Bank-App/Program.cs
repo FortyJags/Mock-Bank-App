@@ -61,7 +61,7 @@ void PickingMenuOptions()
                 break;
             case 4:
                 Console.Clear();
-                Console.WriteLine("Current balance is: £" + currentAmount.ToString());
+                Console.WriteLine($"Current balance is: {currentAmount:C}");
                 break;
             case 5:
                 transactionHistory.ShowTransactionHistory();

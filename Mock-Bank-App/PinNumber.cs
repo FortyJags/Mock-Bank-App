@@ -29,7 +29,7 @@ namespace Mock_Bank_App
         if (validPinNumber.Contains("locked")) { Console.Write("Account is locked"); System.Environment.Exit(0); }
             while (userPinAttempt != validPinNumber)
             {
-               // Console.Clear();
+                Console.Clear();
 
                 ColoredConsole.WriteLineColored("Please enter your PIN", ConsoleColor.Blue);
                 ColoredConsole.ChangeTypingColor(ConsoleColor.White); Console.WriteLine(pinAttempts);
@@ -87,8 +87,8 @@ namespace Mock_Bank_App
         }
 
         public void LoadPin() { 
-            if (File.Exists($"{username}BankPinCode.txt")) { Console.WriteLine("Loaded pin"); validPinNumber = File.ReadAllText($"{username}BankPinCode.txt"); }
-            else { Console.WriteLine("Did not load pin"); validPinNumber = "0000"; }
+            if (File.Exists($"{username}BankPinCode.txt")) { validPinNumber = File.ReadAllText($"{username}BankPinCode.txt"); }
+            else { validPinNumber = "0000"; }
             }
 
 
