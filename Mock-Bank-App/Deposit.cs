@@ -1,12 +1,4 @@
-﻿using Mock_Bank_App;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-namespace Mock_Bank_App
+﻿namespace Mock_Bank_App
 {
 
 
@@ -25,13 +17,18 @@ namespace Mock_Bank_App
         //Asks the user for an amount they want to deposit. This calls FloatTypeCheck to make sure their input is a number. If the number is valid, it adds to the current amount and also supplies data to the transaction log. If the number is not valid, it asks for a different number.
         public decimal Transaction(decimal currentAmount)
         {
-            Console.WriteLine("Please enter the amount you wish to deposit.");
+            ColoredConsole.WriteLineColored("Please enter the amount you wish to deposit.", ConsoleColor.Blue);
             while (depositText != "quit")
             {
                 depositText = Console.ReadLine();
-                if (DecimalTypeCheck(depositText) == true)
+
+                if(depositText is null)
                 {
-                    Console.WriteLine("Previous balance £" + currentAmount); currentAmount += depositAmount; Console.WriteLine("New balance: £" + currentAmount);
+                   ColoredConsole.WriteLineColored("Amount entered is invalid.", ConsoleColor.Red);
+                }
+                else if (DecimalTypeCheck(depositText) == true)
+                {
+                    ColoredConsole.WriteLineColored("Previous balance £" + currentAmount, ConsoleColor.Yellow); currentAmount += depositAmount; ColoredConsole.WriteLineColored("New balance: £" + currentAmount, ConsoleColor.Green);
                     _history.AddToTransactionList(currentAmount, depositAmount, "deposit"); return currentAmount;
                 }
                 else if (DecimalTypeCheck(depositText) == false) { ColoredConsole.WriteLineColored("Please enter a number or enter quit to return to menu", ConsoleColor.Blue); }
